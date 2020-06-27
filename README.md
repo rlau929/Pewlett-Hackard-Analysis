@@ -12,6 +12,7 @@ These two files contain the final versions that includes partition and removing 
 ## Delivering Results
 This module was both easy and difficult. It was easy since we learned similar functions in Python. However, I did run into issues when I was using the partition function. For example, the code showed an error when I used this code:
 
+```
 -- Deliverable 1: Number of Retiring Employees by Title
 SELECT e.emp_no,
 	e.first_name,
@@ -49,9 +50,10 @@ FROM silver_tsunami
  ) 
 tmp WHERE rn = 1
 ORDER BY emp_no;
-
+```
 I've went to Slack to ask questions about my problem and found out that I was not referncing the table correctly. Rather than using "e.first_name", I could remove the "e." and only use "first_name". The final code is below:
 
+```
 SELECT emp_no,
 	first_name,
 	last_name,
@@ -73,7 +75,7 @@ FROM
 tmp WHERE rn = 1
 ORDER BY emp_no;
 SELECT * FROM new_retire
-
+```
 
 Paragraph 2
 In your second paragraph, summarize the steps that you took to solve the problem, as well as the challenges that you encountered along the way. This is an excellent spot to provide examples and descriptions of the code that you used.
