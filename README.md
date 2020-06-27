@@ -24,10 +24,10 @@ SELECT e.emp_no,
 	sa.salary
 INTO silver_tsunami
 FROM employees as e
-INNER JOIN titles as ti
-ON e.emp_no = ti.emp_no
-INNER JOIN salaries as sa
-ON e.emp_no = sa.emp_no
+	INNER JOIN titles as ti
+		ON e.emp_no = ti.emp_no
+	INNER JOIN salaries as sa
+		ON e.emp_no = sa.emp_no
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31');
 SELECT * FROM silver_tsunami
 --TOP PORTION WORKS, BOTTOM PARTITION DOES NOT WORK
