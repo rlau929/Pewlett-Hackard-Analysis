@@ -1,4 +1,4 @@
--- Creating tables for PH-EmployeeDB
+-- Creating tables for PH-EmployeeDB; Challenge located on line 214
 CREATE TABLE departments (
 	dept_no VARCHAR(4) NOT NULL,
 	dept_name VARCHAR(40) NOT NULL,
@@ -204,9 +204,87 @@ SELECT ce.emp_no,
 	ce.first_name,
 	ce.last_name,
 	d.dept_name	
--- INTO dept_info
+INTO dept_info
 FROM current_emp as ce
 INNER JOIN dept_emp AS de
 ON (ce.emp_no = de.emp_no)
 INNER JOIN departments AS d
 ON (de.dept_no = d.dept_no);
+
+-- Deliverable 1: Number of Retiring Employees by Title
+SELECT e.emp_no,
+	e.first_name,
+	e.last_name,
+	ti.title,
+	de.from_date,
+	sa.salary
+INTO silver_tsunami
+FROM employees as e
+INNER JOIN titles as ti
+ON e.emp_no = ti.emp_no
+INNER JOIN salaries as sa
+ON e.emp_no = sa.emp_no
+INNER JOIN dept_emp as de
+ON e.emp_no = de.emp_no
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31');
+SELECT * FROM silver_tsunami
+
+-- Partition the data to show only most recent title per employee
+SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	from_date,
+	salary
+INTO new_retire
+FROM
+ (SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	from_date,
+	salary, ROW_NUMBER() OVER
+ (PARTITION BY (emp_no)
+ ORDER BY from_date DESC) rn
+ FROM silver_tsunami
+ ) 
+tmp WHERE rn = 1
+ORDER BY emp_no;
+SELECT * FROM new_retire
+-- Deliverable 2: Mentorship Eligibility
+SELECT e.emp_no,
+	e.first_name,
+	e.last_name,
+	ti.title,
+	de.from_date,
+	de.to_date
+INTO mentorship
+FROM employees as e
+INNER JOIN titles as ti
+ON e.emp_no = ti.emp_no
+INNER JOIN dept_emp as de
+ON e.emp_no = de.emp_no
+WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31');
+SELECT * FROM mentorship
+-- Partition the data to show only most recent title per employee
+SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	from_date,
+	to_date
+INTO new_mentorship
+FROM
+ (SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	from_date,
+	to_date, ROW_NUMBER() OVER
+ (PARTITION BY (emp_no)
+ ORDER BY from_date DESC) rn
+ FROM mentorship
+ ) 
+tmp WHERE rn = 1
+ORDER BY emp_no;
+SELECT * FROM new_mentorship
