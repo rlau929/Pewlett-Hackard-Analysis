@@ -3,7 +3,7 @@
 ## ERD PNG File
 ![ERD Image Mapping Out Database](EmployeeDB.png)
 
-## Challenge: Since there are so many csv files in the folder, below are the main CSV Files to review for Challenge Deliverable 1 and Deliverable 2.
+## Challenge: Since there are so many csv files in the Data folder, below are the main CSV Files to review for Challenge Deliverable 1 and Deliverable 2.
 1) new_mentorship.csv
 2) new_retire.csv
 
