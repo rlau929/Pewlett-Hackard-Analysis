@@ -260,10 +260,10 @@ SELECT e.emp_no,
 	de.to_date
 INTO mentorship
 FROM employees as e
-INNER JOIN titles as ti
-ON e.emp_no = ti.emp_no
-INNER JOIN dept_emp as de
-ON e.emp_no = de.emp_no
+	INNER JOIN titles as ti
+		ON e.emp_no = ti.emp_no
+	INNER JOIN dept_emp as de
+		ON e.emp_no = de.emp_no
 WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31');
 SELECT * FROM mentorship
 -- Partition the data to show only most recent title per employee
