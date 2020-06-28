@@ -10,7 +10,7 @@
 These two files contain the final versions that includes partition and removing duplicates.
 
 ## Delivering Results
-The purpose of this module is to use SQL to analyze data that have multiple csv files and creating new tables. Since the data is all over the place in multiple files, we can consolidate or manipulate the data in a specific way to analyze certain parts of the data.
+The purpose of this module is to use SQL to analyze data that have multiple csv files and creating/generating new tables. Since the data is all over the place in multiple csv files, we can consolidate or manipulate the data in a specific way to analyze certain parts of the data.
 
 This module was both easy and difficult. It was easy since we learned similar functions in Python. However, I did run into issues when I was using the partition function. For example, the code showed an error when I used this code:
 
@@ -79,6 +79,6 @@ ORDER BY emp_no;
 SELECT * FROM new_retire
 ```
 
-Finally, after completing Deliverable 1 and Deliverable 2, we can conclude that there are 90,398 employees who are planning to retire soon and 1,940 employees who are eligible for mentorship. There are a few limitations in the analysis because we did not analyze each department such as Marketing, Finance, Human Resources, and etc. If we include the department, we can separate the retirement data and see how many employees are leaving each department and if we need to fill in more spots for each department. We can use the COUNT function to calculate the total number of people retiring in each department. We can also analyze the mentorship eligibility of each departments and use the COUNT function to figure out how many mentors we will have in each department and weather we have enough or need to expand our criteria to include additional mentors.
+Finally, after completing Deliverable 1 and Deliverable 2, we can conclude that there are 90,398 employees who are planning to retire soon and 1,940 employees who are eligible for mentorship. There are a few limitations in the analysis because we did not analyze each department such as Marketing, Finance, Human Resources, and etc. If we include the departments, we can separate the retirement data and see how many employees are leaving each department and if we need to fill in more spots for each department. Also, we can use the COUNT function to calculate the total number of people retiring in each department. We can also analyze the mentorship eligibility of each departments by using the COUNT function to figure out how many mentors we will have in each department. Then we can determine if we have enough mentors or if we need to expand our criteria to include additional mentors.
 
 The next step is to create two new tables and use INNER JOIN to include department data into the retirement data and mentorship data. Then, we can use the COUNT function to calculate how many people are retiring in each department and how many mentors are in each department.
